@@ -26,13 +26,35 @@ public class BruteRasterImage implements Image{
         colors=new Color[getHeight()][getWidth()];
     }
 
+    public void setPixelColor(Color color, int x, int y){
+        colors[y][x]=color;
+    }
+    private void setPixelsColor(Color[][] pixels){
+        colors=pixels;
+    }
+
+    private void setPixelsColor(Color color){
+        for(int y=0; y<getHeight();y++)
+            for(int x=0; x<getWidth();x++)
+                colors[y][x]=color;
+    }
+
     public int getHeight() {
         return height;
     }
 
     @Override
     public int getWidth() {
-
         return width;
     }
+
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
 }
