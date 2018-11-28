@@ -1,4 +1,4 @@
 package image;
 
-public enum RasterImageType {BRUTE;
+public enum RasterImageType {BRUTE,PALETTE;
 }
