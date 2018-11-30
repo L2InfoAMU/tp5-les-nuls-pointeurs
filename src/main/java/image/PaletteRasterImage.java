@@ -18,12 +18,12 @@ public class PaletteRasterImage implements Image {
     }
 
     public PaletteRasterImage(Color[][] pixels){
-        height=pixels.length;
-        width=pixels[0].length;
+        width=pixels.length;
+        height=pixels[0].length;
         createRepresentation();
         for(int x=0; x<getHeight();x++)
             for(int y=0; y<getWidth();y++)
-                setPixelColor(pixels[x][y],x,y);
+                setPixelColor(pixels[y][x],x,y);
     }
 /*
     private int getnbcolor(Color c){
@@ -44,12 +44,12 @@ public class PaletteRasterImage implements Image {
 
 
     public void createRepresentation(){
-        matrix=new int[getHeight()][getWidth()];
+        matrix=new int[getWidth()][getHeight()];
         orderedColors=new LinkedList<Color>();
     }
 
     public void setPixelColor(Color color, int x, int y){
-        matrix[x][y]=getnbcolor(color);
+        matrix[y][x]=getnbcolor(color);
     }
     private void setPixelsColor(Color color){
         for(int x=0; x < getHeight();x++)
@@ -60,7 +60,7 @@ public class PaletteRasterImage implements Image {
     public void setPixelsColor(Color[][] pixels){
         for(int x=0; x < getHeight();x++)
             for(int y=0; y < getWidth();y++)
-                setPixelColor(pixels[x][y],x,y);
+                setPixelColor(pixels[y][x],y,x);
     }
     protected void setWidth(int width){
         this.width=width;
