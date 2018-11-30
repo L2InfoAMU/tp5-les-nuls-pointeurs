@@ -4,37 +4,23 @@ import javafx.scene.paint.Color;
 
 import java.util.LinkedList;
 
-public class PaletteRasterImage implements Image {
-    int width;
-    int height;
+public class PaletteRasterImage extends RasterImage implements Image {
     LinkedList<Color> orderedColors;
     int[][] matrix;
 
     public PaletteRasterImage(Color color, int width, int height){
-        this.width = width;
-        this.height = height;
+        super(width,height);
         createRepresentation();
         setPixelsColor(color);
     }
 
     public PaletteRasterImage(Color[][] pixels){
-        width=pixels.length;
-        height=pixels[0].length;
+        super(pixels.length,pixels[0].length);
         createRepresentation();
         for(int x=0; x<getHeight();x++)
             for(int y=0; y<getWidth();y++)
                 setPixelColor(pixels[y][x],x,y);
     }
-/*
-    private int getnbcolor(Color c){
-        int size=orderedColors.size();
-        for(int i=0;i<orderedColors.size();i++)
-            if(orderedColors.get(i).equals(c))
-                return i;
-        orderedColors.add(c);
-        return size;
-    }
-*/
 
     private int getnbcolor(Color c){
         if(!orderedColors.contains(c))
@@ -57,29 +43,13 @@ public class PaletteRasterImage implements Image {
                 setPixelColor(color,x,y);
     }
 
-    public void setPixelsColor(Color[][] pixels){
-        for(int x=0; x < getHeight();x++)
-            for(int y=0; y < getWidth();y++)
-                setPixelColor(pixels[y][x],y,x);
-    }
-    protected void setWidth(int width){
-        this.width=width;
-    }
-    protected void setHeight(int height){
-        this.height=height;
+    public void setPixelsColor(Color[][] pixels) {
+        for (int x = 0; x < getHeight(); x++)
+            for (int y = 0; y < getWidth(); y++)
+                setPixelColor(pixels[y][x], y, x);
     }
     @Override
     public Color getPixelColor(int x, int y) {
         return orderedColors.get(matrix[x][y]);
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
     }
 }
