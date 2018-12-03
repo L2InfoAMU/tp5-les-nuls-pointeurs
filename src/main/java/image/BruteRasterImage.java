@@ -18,25 +18,25 @@ public class BruteRasterImage extends RasterImage implements Image{
     }
 
     @Override
-    public Color getPixelColor(int y, int x) {
-        return colors[y][x];
+    public Color getPixelColor(int x, int y) {
+        return colors[x][y];
     }
 
     public void createRepresentation(){
-        colors=new Color[getHeight()][getWidth()];
+        colors=new Color[getWidth()][getHeight()];
     }
 
-    public void setPixelColor(Color color, int y, int x){
-        colors[y][x]=color;
+    public void setPixelColor(Color color, int x, int y){
+        colors[x][y]=color;
     }
     protected void setPixelsColor(Color[][] pixels){
         colors=pixels;
     }
 
     private void setPixelsColor(Color color){
-        for(int y=0; y<getHeight();y++)
-            for(int x=0; x<getWidth();x++)
-                colors[y][x]=color;
+        for(int x=0; x<getWidth();x++)
+            for(int y=0; y<getHeight();y++)
+                colors[x][y]=color;
     }
 
 

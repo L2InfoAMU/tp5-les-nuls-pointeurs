@@ -17,9 +17,9 @@ public class PaletteRasterImage extends RasterImage implements Image {
     public PaletteRasterImage(Color[][] pixels){
         super(pixels.length,pixels[0].length);
         createRepresentation();
-        for(int x=0; x<getHeight();x++)
-            for(int y=0; y<getWidth();y++)
-                setPixelColor(pixels[y][x],x,y);
+        for(int x=0; x<getWidth();x++)
+            for(int y=0; y<getHeight();y++)
+                setPixelColor(pixels[x][y],x,y);
     }
 
     private int getnbcolor(Color c){
@@ -35,18 +35,19 @@ public class PaletteRasterImage extends RasterImage implements Image {
     }
 
     public void setPixelColor(Color color, int x, int y){
-        matrix[y][x]=getnbcolor(color);
+        matrix[x][y]=getnbcolor(color);
     }
+
     private void setPixelsColor(Color color){
-        for(int x=0; x < getHeight();x++)
-            for(int y=0; y < getWidth();y++)
+        for(int x=0; x < getWidth();x++)
+            for(int y=0; y < getHeight();y++)
                 setPixelColor(color,x,y);
     }
 
     public void setPixelsColor(Color[][] pixels) {
-        for (int x = 0; x < getHeight(); x++)
-            for (int y = 0; y < getWidth(); y++)
-                setPixelColor(pixels[y][x], y, x);
+        for (int x = 0; x < getWidth(); x++)
+            for (int y = 0; y < getHeight(); y++)
+                setPixelColor(pixels[x][y], x, y);
     }
     @Override
     public Color getPixelColor(int x, int y) {
