@@ -14,16 +14,16 @@ public class Triangle implements Shape {
         this.p3 = p3;
         color=co;
     }
+    private float getArea(){
+        return (p1.x *Math.abs(p2.y-p3.y)+p2.x*Math.abs(p3.y-p1.y)+p3.x*Math.abs(p1.y-p2.y))/2;
+    }
 
     @Override
     public boolean contains(Point p) {
-        float coeff1=((p1.y-p2.y)/(p1.x-p2.x));
-        float coeff2 =((p2.y-p3.y)/(p2.x-p3.x));
-        float coeff3=((p3.y-p1.y)/(p3.x-p1.x));
-        float en01=p1.y-coeff1*p1.x;
-        float en02=p2.y-coeff2*p2.x;
-        float en03=p3.y-coeff3*p3.x;
-        return p.y <= p.x*coeff1+en01 &&p.y <= p.x*coeff2+en02 &&p.y <= p.x*coeff3+en03;
+        Triangle t1=new Triangle(p, p1,p2,color);
+        Triangle t2=new Triangle(p, p2,p3,color);
+        Triangle t3=new Triangle(p, p3,p1,color);
+        return getArea()==t1.getArea()+t2.getArea()+t3.getArea();
     }
 
     @Override
