@@ -14,8 +14,15 @@ public class Triangle implements Shape {
         this.p3 = p3;
         color=co;
     }
-    private float getArea(){
-        return (p1.x *Math.abs(p2.y-p3.y)+p2.x*Math.abs(p3.y-p1.y)+p3.x*Math.abs(p1.y-p2.y))/2;
+    double distance(Point a, Point b){
+        return Math.sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+    }
+    private double getArea(){
+        double a=distance(p1,p2);
+        double b=distance(p2,p3);
+        double c=distance(p1,p3);
+        double s=(a + b + c)/2;
+        return Math.sqrt(s*(s-a)*(s-b)*(s-c));
     }
 
     @Override
@@ -23,7 +30,7 @@ public class Triangle implements Shape {
         Triangle t1=new Triangle(p, p1,p2,color);
         Triangle t2=new Triangle(p, p2,p3,color);
         Triangle t3=new Triangle(p, p3,p1,color);
-        return getArea()==t1.getArea()+t2.getArea()+t3.getArea();
+        return getArea()<t1.getArea()+t2.getArea()+t3.getArea()+0.0000001 && t1.getArea()+t2.getArea()+t3.getArea()-0.0000001<getArea();//0.0000001 pour arrondis
     }
 
     @Override
