@@ -2,13 +2,13 @@ package image;
 
 import javafx.scene.paint.Color;
 
-public class triangle implements Shape {
+public class Triangle implements Shape {
     Point p1;
     Point p2;
     Point p3;
     Color color;
 
-    public triangle(Point p1, Point p2, Point p3,Color co) {
+    public Triangle(Point p1, Point p2, Point p3, Color co) {
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
