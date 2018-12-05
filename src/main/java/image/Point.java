@@ -21,6 +21,10 @@ public class Point {
         return x == point.x &&
                 y == point.y;
     }
+    public double distance(Point b){
+        return Math.sqrt((x-b.x)*(x-b.x)+(y-b.y)*(y-b.y));
+    }
+
 
     @Override
     public final int hashCode() {
