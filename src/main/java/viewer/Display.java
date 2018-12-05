@@ -23,7 +23,7 @@ public class Display implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.imageFactory=new TriangleFactory();
+        this.imageFactory=new CircleFactory();
         //imageFactory = new RasterFlagFactory(900, 600,
           //      Color.BLUE, Color.WHITE, Color.RED, RasterImageType.BRUTE);
         //imageFactory = new LogoLISFactory();
